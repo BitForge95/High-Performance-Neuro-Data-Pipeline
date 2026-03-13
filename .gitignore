@@ -1,0 +1,19 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*~
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Data files (we don't want to commit 100GB neuro datasets to GitHub!)
+*.h5
+*.nwb
+*.zarr
+data/
