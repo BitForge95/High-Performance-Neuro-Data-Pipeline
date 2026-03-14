@@ -14,3 +14,6 @@ class BaseNeuroLoader:
         print(f"Dataset: {self.dataset_name}")
         print(f"Location : {self.file_path}")
         print(f"Currently Loaded : {self.is_loaded}")
+
+    def load_data(self):
+        print(f"Loading generic data from {self.file_path}")
