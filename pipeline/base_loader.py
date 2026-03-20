@@ -1,19 +1,25 @@
-class BaseNeuroLoader:
+# 1. Import the ABC module built into Python
+from abc import ABC, abstractmethod
+
+
+# 2. Inherit from ABC to make this a strict blueprint
+class BaseNeuroLoader(ABC):
     """
-    A bluprint for loading massive neuroscience datasets
+    An Abstract Base Class (strict blueprint) for loading massive neuroscience datasets.
     """
 
-    # The init method sets up the object when it is created
     def __init__(self, file_path, dataset_name):
-        # We are storing the inputs inside the object using self
         self.file_path = file_path
         self.dataset_name = dataset_name
-        self.is_loaded = False  # We are setting this false as by default the dataset is not loaded yet
+        self.is_loaded = False
 
     def display_info(self):
         print(f"Dataset: {self.dataset_name}")
-        print(f"Location : {self.file_path}")
-        print(f"Currently Loaded : {self.is_loaded}")
+        print(f"Location: {self.file_path}")
+        print(f"Currently Loaded: {self.is_loaded}")
 
+    # 3. Add the abstractmethod decorator
+    # This tells Python: "Any child class MUST have a method called load_data, or I will crash."
+    @abstractmethod
     def load_data(self):
-        print(f"Loading generic data from {self.file_path}")
+        pass  # 'pass' just means "do nothing". The child will provide the actual code!
