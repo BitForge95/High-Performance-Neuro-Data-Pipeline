@@ -1,8 +1,6 @@
-# 1. Import the ABC module built into Python
 from abc import ABC, abstractmethod
 
 
-# 2. Inherit from ABC to make this a strict blueprint
 class BaseNeuroLoader(ABC):
     """
     An Abstract Base Class (strict blueprint) for loading massive neuroscience datasets.

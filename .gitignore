@@ -17,3 +17,5 @@ Thumbs.db
 *.nwb
 *.zarr
 data/
+fake_neuropixels.dat
+*.dat

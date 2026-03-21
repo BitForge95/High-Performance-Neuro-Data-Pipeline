@@ -2,8 +2,8 @@ import numpy as np
 import os
 from pipeline.ephys_loader import EphysLoader
 from pipeline.video_loader import VideoLoader
+from pipeline.synchronizer import DataSynchronizer
 
-# --- SETUP: GENERATE A FAKE NEUROPIXELS DATASET ---
 print("--- GENERATING FAKE NEUROPIXELS DATA ---")
 fake_file_path = "fake_neuropixels.dat"
 # Generate 1000 random floating-point numbers (simulating brain signals)
@@ -12,7 +12,6 @@ fake_data.tofile(fake_file_path)  # Save directly to disk
 print(f"Created {fake_file_path} ({os.path.getsize(fake_file_path)} bytes)\n")
 
 
-# --- RUN THE PIPELINE ---
 # 1. Instantiate loaders (pointing EphysLoader to our new real file)
 allen_ephys = EphysLoader(
     file_path=fake_file_path,
@@ -29,7 +28,17 @@ behavior_cam = VideoLoader(
 )
 
 experiment_datasets = [allen_ephys, behavior_cam]
-
 for dataset in experiment_datasets:
-    dataset.load_data()
-    print("-" * 30)
+    if isinstance(dataset, EphysLoader):
+        dataset.load_data(filter_rule="signal > 0.5")
+    else:
+        dataset.load_data()
+
+# We create the Synchronizer and give it our two loaded objects
+sync_engine = DataSynchronizer(ephys_loader=allen_ephys, video_loader=behavior_cam)
+
+# 3. Simulate an event
+event_time = 1.5
+aligned_ephys_idx, aligned_video_frame = sync_engine.get_data_at_time(event_time)
+
+print("\n--- PIPELINE COMPLETE ---")
