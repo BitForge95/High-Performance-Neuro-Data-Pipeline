@@ -24,22 +24,22 @@ git clone [https://github.com/BitForge95/High-Performance-Neuro-Data-Pipeline.gi
 cd High-Performance-Neuro-Data-Pipeline
 pip install -e .
 
-## Usage
+##Usage (Command Line Interface)
 
-The pipeline includes a Command Line Interface (CLI) for rapid execution and alignment testing.
+Installing the package exposes the neuro-align global command. You can align any combination of Electrophysiology, Video, and fMRI data.
 
-**Standard Alignment:**
+**Standard Alignment with Export :**
 
 ```bash
-python cli.py --ephys path/to/neuropixels.dat --video path/to/behavior.mp4 --time 2.5
+neuro-align --ephys neuropixels.dat --video behavior.mp4 --fmri sub-01_bold.nii.gz --time 2.5
 ```
 
 **Applying Data Filters:**
 
-Conditional thresholding can be applied during initialization to isolate specific signals:
+Isolate specific signals during initialization to drop low-value data from RAM early:
 
 ```bash
-python cli.py --ephys path/to/neuropixels.dat --video path/to/behavior.mp4 --time 2.5 --filter "signal > 0.8"
+neuro-align --ephys neuropixels.dat --video behavior.mp4 --time 2.5 --filter "signal > 0.8"
 ```
 
 ## Testing
@@ -48,6 +48,10 @@ This project enforces strict validation for its synchronization logic. Run the a
 
 ```bash
 pytest tests/
+```
+
+```bash
+neuro-align --help
 ```
 
 ## Repository Structure
