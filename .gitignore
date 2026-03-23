@@ -19,3 +19,4 @@ Thumbs.db
 data/
 fake_neuropixels.dat
 *.dat
+*.egg-info/

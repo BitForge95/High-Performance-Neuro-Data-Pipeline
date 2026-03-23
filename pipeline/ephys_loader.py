@@ -15,7 +15,7 @@ class EphysLoader(BaseNeuroLoader):
         # COMPOSITION: We plug the FilterEngine into this loader!
         self.filter_engine = StringFilterEngine()
 
-    def load_data(self, filter_rule=None):  # <-- Add a filter_rule argument
+    def load_data(self, filter_rule=None):
         print(f"[{self.dataset_name}] Initializing Zero-Copy Memory Mapping...")
 
         if not os.path.exists(self.file_path):
