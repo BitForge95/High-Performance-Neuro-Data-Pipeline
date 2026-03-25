@@ -53,20 +53,3 @@ pytest tests/
 ```bash
 neuro-align --help
 ```
-
-## Repository Structure
-
-```text
-├── pipeline/
-│   ├── base_loader.py      # Abstract Base Class defining loader contracts
-│   ├── ephys_loader.py     # Memory-mapped loader for high-density electrophysiology
-│   ├── video_loader.py     # Standard loader for behavioral camera frames
-│   ├── filter_engine.py    # String-parsing composition module
-│   └── synchronizer.py     # Core temporal alignment engine
-├── tests/
-│   └── test_synchronizer.py # Automated test suite for alignment mathematics
-├── .github/workflows/
-│   └── ci.yml              # CI/CD pipeline configuration
-├── cli.py                  # Command Line Interface execution script
-└── requirements.txt        # System dependencies
-```
