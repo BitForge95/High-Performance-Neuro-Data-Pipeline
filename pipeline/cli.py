@@ -14,7 +14,7 @@ from .ephys_loader import EphysLoader
 from .video_loader import VideoLoader
 from .synchronizer import DataSynchronizer
 from .nifti_loader import BidsNiftiLoader
-from .exporter import Hdf5Exporter
+from .exporter import NumpyExporter
 
 
 def main():
@@ -72,7 +72,7 @@ def main():
         sync_engine = DataSynchronizer(ephys_loader, video_loader)
         ephys_idx, video_frame = sync_engine.get_data_at_time(args.time)
 
-        exporter = Hdf5Exporter()
+        exporter = NumpyExporter()
         exporter.export_sync_data(
             time_sec=args.time, ephys_idx=ephys_idx, video_frame=video_frame
         )
